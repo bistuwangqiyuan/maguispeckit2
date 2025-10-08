@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MagSpecKit - 石油用防爆工业磁检测仪器系统</title>
+    <meta name="description" content="专业级石油管道磁漏检测仪器Web界面系统，符合ISO 9934和ASTM E709标准">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'industrial-orange': '#FF6B35',
+                        'industrial-dark-gray': '#2D2D2D',
+                        'industrial-gray': '#1E1E1E',
+                        'industrial-black': '#000000',
+                        'deep-black': '#1A1A1A',
+                        'light-gray': '#A0A0A0',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- ECharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+</head>
+<body class="bg-industrial-black text-gray-200 font-sans antialiased">
+
+    <!-- Main Application Container -->
+    <div id="app" class="flex flex-col h-screen overflow-hidden">
+        
+        <!-- Top Status Bar -->
+        <header id="status-bar"></header>
+        
+        <!-- Main Content Area -->
+        <div class="flex flex-grow overflow-hidden">
+            
+            <!-- Left Toolbar -->
+            <aside id="left-toolbar" class="w-24"></aside>
+            
+            <!-- Central Display Area -->
+            <main id="main-content" class="flex-grow flex flex-col bg-industrial-black p-4 overflow-auto">
+                <!-- Content will be dynamically loaded here -->
+                <div id="content-area" class="flex-grow flex flex-col gap-4">
+                    <!-- Waveform Page (Default) -->
+                    <div id="page-waveform" class="flex-grow flex flex-col gap-4">
+                        <!-- Waveform Controls -->
+                        <div id="waveform-controls"></div>
+                        
+                        <!-- Waveform Chart -->
+                        <div class="flex-grow bg-industrial-gray rounded-lg p-4 industrial-border">
+                            <div id="waveform-chart" class="w-full h-full" style="min-height: 400px;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data List Page (Hidden by default) -->
+                    <div id="page-data" class="h-full hidden">
+                        <div class="industrial-panel h-full overflow-auto">
+                            <div class="industrial-panel-header">检测数据列表</div>
+                            <table class="industrial-table">
+                                <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>位置</th>
+                                        <th>X轴 (mV)</th>
+                                        <th>Y轴 (mV)</th>
+                                        <th>Z轴 (mV)</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="data-table-body">
+                                    <tr>
+                                        <td colspan="6" class="text-center text-gray-500 py-8">暂无数据</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Defects Page (Hidden by default) -->
+                    <div id="page-defects" class="h-full hidden">
+                        <div class="industrial-panel h-full overflow-auto">
+                            <div class="industrial-panel-header">缺陷记录</div>
+                            <div id="defects-list" class="space-y-4">
+                                <p class="text-center text-gray-500 py-8">暂无缺陷记录</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Page (Hidden by default) -->
+                    <div id="page-settings" class="h-full hidden">
+                        <div class="industrial-panel h-full overflow-auto">
+                            <div class="industrial-panel-header">参数配置</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Detection Parameters -->
+                                <div class="space-y-4">
+                                    <h3 class="text-lg font-bold text-orange-500 mb-4">检测参数</h3>
+                                    <div>
+                                        <label class="industrial-label">采样率 (Hz)</label>
+                                        <input type="number" class="industrial-input w-full" value="1000" />
+                                    </div>
+                                    <div>
+                                        <label class="industrial-label">灵敏度</label>
+                                        <input type="range" class="w-full" min="1" max="10" value="5" />
+                                    </div>
+                                    <div>
+                                        <label class="industrial-label">滤波模式</label>
+                                        <select class="industrial-input w-full">
+                                            <option>低通滤波</option>
+                                            <option>高通滤波</option>
+                                            <option>带通滤波</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Gate Settings -->
+                                <div class="space-y-4">
+                                    <h3 class="text-lg font-bold text-orange-500 mb-4">闸门设置</h3>
+                                    <div>
+                                        <label class="industrial-label">闸门位置 (mm)</label>
+                                        <input type="number" class="industrial-input w-full" value="0" />
+                                    </div>
+                                    <div>
+                                        <label class="industrial-label">闸门宽度 (mm)</label>
+                                        <input type="number" class="industrial-input w-full" value="100" />
+                                    </div>
+                                    <div>
+                                        <label class="industrial-label">阈值 (mV)</label>
+                                        <input type="number" class="industrial-input w-full" value="50" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <button class="btn-industrial flex-1 bg-orange-500 text-black">保存配置</button>
+                                <button class="btn-industrial flex-1">恢复默认</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reports Page (Hidden by default) -->
+                    <div id="page-reports" class="h-full hidden">
+                        <div class="industrial-panel h-full overflow-auto">
+                            <div class="industrial-panel-header">报告生成</div>
+                            <div class="space-y-6">
+                                <p class="text-gray-400">选择项目和时间范围生成检测报告</p>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="industrial-label">项目名称</label>
+                                        <select class="industrial-input w-full">
+                                            <option>请选择项目</option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="industrial-label">开始日期</label>
+                                            <input type="date" class="industrial-input w-full" />
+                                        </div>
+                                        <div>
+                                            <label class="industrial-label">结束日期</label>
+                                            <input type="date" class="industrial-input w-full" />
+                                        </div>
+                                    </div>
+                                    <button class="btn-industrial w-full bg-orange-500 text-black">生成PDF报告</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <!-- Right Toolbar -->
+            <aside id="right-toolbar" class="w-24"></aside>
+            
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <footer id="bottom-nav"></footer>
+        
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script type="module" src="js/app.js"></script>
+    
+</body>
+</html>

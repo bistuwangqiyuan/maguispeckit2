@@ -1,0 +1,106 @@
+# Netlify Configuration for MagSpecKit
+# 石油用防爆工业磁检测仪器系统 - Netlify部署配置
+
+[build]
+  # Build command (none needed for static site)
+  command = "echo 'No build step required'"
+  
+  # Publish directory
+  publish = "public"
+  
+  # Build environment
+  [build.environment]
+    NODE_VERSION = "18"
+
+# Redirect rules
+[[redirects]]
+  # SPA fallback - redirect all requests to index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security Headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Content Security Policy
+    Content-Security-Policy = """
+      default-src 'self'; 
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://zzyueuweeoakopuuwfau.supabase.co; 
+      style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; 
+      img-src 'self' data: https:; 
+      font-src 'self' data:; 
+      connect-src 'self' https://zzyueuweeoakopuuwfau.supabase.co wss://zzyueuweeoakopuuwfau.supabase.co; 
+      frame-ancestors 'none'; 
+      base-uri 'self'; 
+      form-action 'self';
+    """
+    
+    # Performance Headers
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache HTML with short expiry
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Error pages
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 404
+
+# Environment variables (public ones only)
+# Note: Sensitive keys should be set in Netlify UI, not here
+# [context.production.environment]
+#   PUBLIC_SUPABASE_URL = "https://zzyueuweeoakopuuwfau.supabase.co"
+
+# Dev server configuration
+[dev]
+  command = "npx http-server public -p 3000 -c-1"
+  port = 3000
+  publish = "public"
+  autoLaunch = true
+
+# Functions configuration (if needed in future)
+[functions]
+  directory = "functions"
+
+# Plugin configuration
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  # Lighthouse plugin configuration
+  [plugins.inputs]
+    output_path = "reports/lighthouse"
+    
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+

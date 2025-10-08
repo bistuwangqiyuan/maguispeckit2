@@ -1,0 +1,53 @@
+{
+  "name": "magspeckit",
+  "version": "1.0.0",
+  "description": "石油用防爆工业磁检测仪器界面软件系统 - Web版",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "http-server public -p 3000 -c-1 -o",
+    "build": "echo 'No build step required for static site'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint public/js/**/*.js",
+    "lint:fix": "eslint public/js/**/*.js --fix",
+    "format": "prettier --write \"public/**/*.{js,css,html}\"",
+    "preview": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "magnetic-testing",
+    "ndt",
+    "industrial",
+    "petroleum",
+    "pipeline-inspection",
+    "ISO-9934",
+    "ASTM-E709"
+  ],
+  "author": "MagSpecKit Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@netlify/plugin-lighthouse": "^6.0.0",
+    "eslint": "^8.57.0",
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "netlify-cli": "^17.36.4",
+    "prettier": "^3.3.3",
+    "playwright": "^1.48.2"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 90",
+    "Edge >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "> 1%",
+    "not dead"
+  ]
+}
+
