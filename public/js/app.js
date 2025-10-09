@@ -27,6 +27,9 @@ import './utils/data-simulator.js';
 // Import features
 import './features/defect-marking.js';
 
+// Import pages
+import './pages/settings.js';
+
 /**
  * Main Application Class
  */
@@ -106,6 +109,10 @@ class MagSpecKitApp {
         // Waveform Chart
         this.components.waveformChart = new WaveformChart('waveform-chart');
         this.components.waveformChart.init();
+        
+        // Waveform Controls
+        this.components.waveformControls = new WaveformControls('waveform-controls', this.components.waveformChart);
+        this.components.waveformControls.render();
         
         console.log('✅ UI components initialized');
     }
