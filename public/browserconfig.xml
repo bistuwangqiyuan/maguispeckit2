@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square70x70logo src="/images/tile-70x70.png"/>
+            <square150x150logo src="/images/tile-150x150.png"/>
+            <square310x310logo src="/images/tile-310x310.png"/>
+            <wide310x150logo src="/images/tile-310x150.png"/>
+            <TileColor>#FF6B35</TileColor>
+        </tile>
+        <badge>
+            <polling-uri src="https://magspeckit.netlify.app/api/badge"/>
+            <frequency>30</frequency>
+        </badge>
+    </msapplication>
+</browserconfig>
+

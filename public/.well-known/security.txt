@@ -1,0 +1,10 @@
+Contact: mailto:security@magspeckit.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: zh-CN, en
+Canonical: https://magspeckit.netlify.app/.well-known/security.txt
+Policy: https://magspeckit.netlify.app/security-policy
+Acknowledgments: https://magspeckit.netlify.app/security-acknowledgments
+
+# 如果您发现安全漏洞，请通过上述邮箱联系我们
+# We appreciate responsible disclosure of security vulnerabilities
+

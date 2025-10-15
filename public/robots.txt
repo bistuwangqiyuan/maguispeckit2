@@ -1,0 +1,55 @@
+# robots.txt for MagSpecKit
+# 最佳SEO实践配置
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /private/
+Disallow: /_headers
+Disallow: /_redirects
+
+# 允许搜索引擎索引所有资源
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# 爬取延迟（避免服务器过载）
+Crawl-delay: 0
+
+# Sitemap位置
+Sitemap: https://magspeckit.netlify.app/sitemap.xml
+
+# Google Bot 特殊配置
+User-agent: Googlebot
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Baidu Bot (百度)
+User-agent: Baiduspider
+Allow: /
+
+# Sogou Bot (搜狗)
+User-agent: Sogou web spider
+Allow: /
+
+# 360 Spider
+User-agent: 360Spider
+Allow: /
+
+# 阻止不良爬虫
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# 最后更新：2025-10-09
+

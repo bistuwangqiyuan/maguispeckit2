@@ -1,0 +1,30 @@
+/* TEAM */
+    Developer: MagSpecKit Team
+    Site: https://magspeckit.netlify.app
+    Contact: support [at] magspeckit.com
+    Location: China
+
+/* THANKS */
+    感谢所有为工业无损检测技术做出贡献的工程师和研究人员
+
+/* SITE */
+    Last update: 2025/10/09
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: Tailwind CSS, ECharts, Supabase
+    Software: VS Code, Git, Netlify
+    Language: 中文 / English
+    Doctype: HTML5
+    IDE: VS Code, Cursor
+
+/* PROJECT */
+    Name: MagSpecKit
+    Description: 石油用防爆工业磁检测仪器系统
+    Version: 1.0.0
+    Standards: ISO 9934, ASTM E709
+    Features: 
+        - 实时数据采集（≥1000Hz）
+        - AI缺陷识别（≥95%准确率）
+        - 波形分析和显示
+        - 专业报告生成
+        - 项目管理系统
+

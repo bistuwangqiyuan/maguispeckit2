@@ -1,5 +1,6 @@
 # Netlify Configuration for MagSpecKit
 # 石油用防爆工业磁检测仪器系统 - Netlify部署配置
+# SEO优化配置 - 2025-10-09
 
 [build]
   # Build command (none needed for static site)
@@ -11,6 +12,24 @@
   # Build environment
   [build.environment]
     NODE_VERSION = "18"
+
+# Build processing - 优化构建过程
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
 
 # Redirect rules
 [[redirects]]
@@ -90,7 +109,7 @@
 [functions]
   directory = "functions"
 
-# Plugin configuration
+# Plugin configuration - 提升SEO和性能
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   
@@ -99,8 +118,27 @@
     output_path = "reports/lighthouse"
     
   [plugins.inputs.thresholds]
-    performance = 0.9
-    accessibility = 0.9
-    best-practices = 0.9
-    seo = 0.9
+    performance = 0.95
+    accessibility = 0.95
+    best-practices = 0.95
+    seo = 0.98
+    pwa = 0.90
+
+# 添加sitemap插件
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  
+  [plugins.inputs]
+    baseUrl = "https://magspeckit.netlify.app"
+    sitemapPath = "/sitemap.xml"
+    ignorePeriod = 0
+    providers = [
+      "google",
+      "bing",
+      "yandex"
+    ]
+
+# 图片优化插件（如果需要）
+# [[plugins]]
+#   package = "netlify-plugin-image-optim"
 

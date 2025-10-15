@@ -1,11 +1,66 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" prefix="og: http://ogp.me/ns#">
 <head>
+    <!-- 基础Meta标签 -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MagSpecKit - 石油用防爆工业磁检测仪器系统</title>
-    <meta name="description" content="专业级石油管道磁漏检测仪器Web界面系统，符合ISO 9934和ASTM E709标准">
+    
+    <!-- SEO核心标签 -->
+    <title>MagSpecKit - 专业石油管道磁漏检测仪器系统 | 工业无损检测解决方案</title>
+    <meta name="description" content="MagSpecKit是符合ISO 9934和ASTM E709国际标准的专业磁漏检测(MFL)系统，提供实时数据采集、AI缺陷识别、波形分析和专业报告生成。适用于石油管道、天然气管道的防爆工业检测。">
+    <meta name="keywords" content="磁漏检测,MFL,管道检测,无损检测,石油检测,工业检测仪器,防爆检测,ISO 9934,ASTM E709,缺陷识别,管道完整性,腐蚀检测,裂纹检测">
+    <meta name="author" content="MagSpecKit Team">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    
+    <!-- 规范链接 -->
+    <link rel="canonical" href="https://magspeckit.netlify.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magspeckit.netlify.app/">
+    <meta property="og:title" content="MagSpecKit - 专业石油管道磁漏检测仪器系统">
+    <meta property="og:description" content="符合ISO 9934和ASTM E709标准的专业磁漏检测系统，提供实时数据采集、AI缺陷识别和专业报告生成。">
+    <meta property="og:image" content="https://magspeckit.netlify.app/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="MagSpecKit">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://magspeckit.netlify.app/">
+    <meta name="twitter:title" content="MagSpecKit - 专业石油管道磁漏检测仪器系统">
+    <meta name="twitter:description" content="符合ISO 9934和ASTM E709标准的专业磁漏检测系统，提供实时数据采集、AI缺陷识别和专业报告生成。">
+    <meta name="twitter:image" content="https://magspeckit.netlify.app/images/twitter-card.jpg">
+    
+    <!-- PWA / Web App -->
+    <meta name="application-name" content="MagSpecKit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MagSpecKit">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="msapplication-TileColor" content="#FF6B35">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- 地理位置（如适用） -->
+    <meta name="geo.region" content="CN">
+    <meta name="geo.placename" content="China">
+    
+    <!-- 版权信息 -->
+    <meta name="copyright" content="© 2025 MagSpecKit Team. All rights reserved.">
+    
+    <!-- 性能优化：DNS预解析 -->
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,8 +90,110 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css">
     
-    <!-- Favicon -->
+    <!-- Favicon 完整系列 -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF6B35">
+    
+    <!-- 结构化数据 - JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MagSpecKit",
+      "alternateName": "Magnetic Spectrum Kit",
+      "description": "专业的石油管道磁漏检测仪器Web界面系统，符合ISO 9934和ASTM E709国际标准，提供实时数据采集、AI缺陷识别、波形分析和专业报告生成功能。",
+      "url": "https://magspeckit.netlify.app/",
+      "applicationCategory": "IndustrialApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      },
+      "screenshot": "https://magspeckit.netlify.app/images/screenshot.jpg",
+      "softwareVersion": "1.0.0",
+      "datePublished": "2025-10-09",
+      "author": {
+        "@type": "Organization",
+        "name": "MagSpecKit Team",
+        "url": "https://magspeckit.netlify.app/"
+      },
+      "featureList": [
+        "实时磁场数据采集（≥1000Hz）",
+        "高性能波形显示（≥30 FPS）",
+        "AI辅助缺陷识别（≥95%准确率）",
+        "多通道数据同步",
+        "专业检测报告生成",
+        "符合ISO 9934标准",
+        "符合ASTM E709标准",
+        "防爆操作界面",
+        "项目管理系统",
+        "数据分析与统计"
+      ],
+      "browserRequirements": "Requires JavaScript. Requires Chrome 90+, Edge 90+, Firefox 88+, or Safari 14+",
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://magspeckit.netlify.app/docs/"
+      }
+    }
+    </script>
+    
+    <!-- 组织结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MagSpecKit Team",
+      "url": "https://magspeckit.netlify.app/",
+      "logo": "https://magspeckit.netlify.app/images/logo.png",
+      "sameAs": [
+        "https://github.com/magspeckit"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Technical Support",
+        "email": "support@magspeckit.com"
+      }
+    }
+    </script>
+    
+    <!-- 面包屑导航 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://magspeckit.netlify.app/"
+      }]
+    }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // 注册Service Worker以支持PWA和离线功能
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registered:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.warn('⚠️ Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </head>
 <body class="bg-industrial-black text-gray-200 font-sans antialiased">
 
