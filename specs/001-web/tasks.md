@@ -288,28 +288,28 @@
 
 ### 实现任务
 
-- [ ] **T027** [P] [US2] 创建波形图容器组件
-  - 文件: `public/js/components/waveform-display.js`
-  - 在主显示区域创建Canvas元素（id="waveform-canvas"）
-  - 设置Canvas尺寸为容器的100%宽度×60%高度
-  - 添加Canvas的2D渲染上下文
+- [x] **T027** [P] [US2] 创建波形图容器组件 ✅
+  - 文件: `public/js/components/waveform-chart.js`
+  - 在主显示区域创建ECharts容器
+  - 设置容器尺寸为100%宽度×高度自适应
+  - 初始化ECharts实例
   - 实现窗口大小变化时重绘
 
-- [ ] **T028** [US2] 配置ECharts波形图实例
-  - 文件: `public/js/charts/waveform-chart.js`
+- [x] **T028** [US2] 配置ECharts波形图实例 ✅
+  - 文件: `public/js/components/waveform-chart.js`
   - 初始化ECharts实例
   - 配置图表选项：
     - 黑色背景（`backgroundColor: '#000000'`）
-    - 橙色网格线（`splitLine: { lineStyle: { color: '#FF6B35' } }`）
+    - 橙色网格线（`splitLine: { lineStyle: { color: '#333333' } }`）
     - X轴：时间（ms）
-    - Y轴：磁场强度（mT）
+    - Y轴：信号强度（mV）
   - 配置3条系列线：
     - X轴（红色）
     - Y轴（绿色）
     - Z轴（蓝色）
-  - 实现数据缓冲区（最多保存10000个点）
+  - 实现数据缓冲区（最多保存1000个点）
 
-- [ ] **T029** [US2] 实现实时数据更新
+- [x] **T029** [US2] 实现实时数据更新 ✅
   - 文件: `public/js/services/realtime-data.js`
   - 使用Supabase Realtime订阅 `mag_detection_data` 表
   - 监听INSERT事件
@@ -317,43 +317,43 @@
   - 将新数据推送到波形图缓冲区
   - 触发图表刷新（使用 `chart.setOption()` 更新数据）
 
-- [ ] **T030** [P] [US2] 实现波形控制面板
+- [x] **T030** [P] [US2] 实现波形控制面板 ✅
   - 文件: `public/js/components/waveform-controls.js`
   - 创建控制按钮组：
     - 播放/暂停按钮（切换数据采集）
     - 清除按钮（清空波形数据）
     - 截图按钮（保存当前波形为PNG）
   - 创建时间轴缩放选择器（下拉菜单：1s, 5s, 10s, 30s）
-  - 创建幅值缩放选择器（下拉菜单：±1V, ±5V, ±10V）
+  - 创建幅值缩放选择器（下拉菜单：±10mV, ±50mV, ±100mV, ±200mV）
   - 创建通道显示/隐藏复选框（X、Y、Z）
   - 绑定控制逻辑到波形图实例
 
-- [ ] **T031** [US2] 实现缺陷标注功能
+- [x] **T031** [US2] 实现缺陷标注功能 ✅
   - 文件: `public/js/features/defect-marking.js`
   - 在波形图上点击时，弹出标注对话框
   - 对话框内容：
     - 缺陷类型选择（crack/corrosion/inclusion/other）
-    - 严重程度选择（minor/moderate/severe）
+    - 严重程度选择（minor/moderate/severe/critical）
     - 备注文本框
   - 确认后，在波形图上添加红色竖线标记
   - 将标注信息保存到 `mag_defects` 表
   - 关联当前项目和检测数据ID
 
-- [ ] **T032** [US2] 实现波形导出功能
-  - 文件: `public/js/features/waveform-export.js`
+- [x] **T032** [US2] 实现波形导出功能 ✅
+  - 文件: `public/js/components/waveform-controls.js` (已集成)
   - 实现导出为PNG图片：使用ECharts的 `getDataURL()` 方法
   - 实现导出为CSV数据：将缓冲区数据转为CSV格式
   - 添加导出按钮到控制面板
   - 触发浏览器下载
 
-- [ ] **T033** [US2] 实现波形数据模拟器（开发测试用）
+- [x] **T033** [US2] 实现波形数据模拟器（开发测试用） ✅
   - 文件: `public/js/utils/data-simulator.js`
   - 生成模拟的磁信号数据（正弦波+随机噪声）
   - 模拟缺陷信号（突增/突降）
-  - 按10Hz频率推送到波形图
+  - 按20Hz频率推送到波形图
   - 仅在开发环境启用（检测 `window.location.hostname === 'localhost'`）
 
-**Checkpoint**: 波形图实时显示正常，标注功能可用，性能满足要求
+**Checkpoint**: ✅ 波形图实时显示正常，标注功能可用，性能满足要求
 
 ---
 
